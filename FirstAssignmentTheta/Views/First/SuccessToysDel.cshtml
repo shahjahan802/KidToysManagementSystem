@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ToysProperties>
+
+@{
+    ViewData["Title"] = "ToysDetail";
+}
+<div>
+    <h2 style="font-family: 'Old Standard TT', serif;">ToysDetail</h2>
+    @foreach (ToysProperties a in Model)
+    {
+    <p>@a.Name</p>
+    <p>@a.Price</p>
+    <p>@a.Color</p>
+    <p>@a.Weight</p>
+    <p>@a.Age</p>
+    }
+</div>

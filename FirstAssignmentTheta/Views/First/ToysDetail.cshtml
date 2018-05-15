@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ToysProperties>
+
+<div class="col-md-5 ">
+    <h2 class=" btn btn-info btn-lg btn-block" style="font-family: 'Old Standard TT', serif;">ToysDetail</h2>
+    <br />
+    @foreach (ToysProperties a in Model)
+    {
+        <div class="panel">
+        <div class="panel-body">
+        <p>@a.Name</p>
+        <p>@a.Price</p>
+        <p>@a.Color</p>
+        <p>@a.Weight</p>
+        <p>@a.Age</p>
+    </div>
+</div>
+    }
+</div>

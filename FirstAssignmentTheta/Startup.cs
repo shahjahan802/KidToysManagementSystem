@@ -28,6 +28,8 @@ namespace FirstAssignmentTheta
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<KidsToysSystemContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Con")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ToysProperties>
+<br/>
+<div class=" container" style="font-family: 'Old Standard TT', serif;">
+    <div class=" col-md-5">
+        <h2 class=" btn btn-info btn-lg btn-block" style="font-family: 'Old Standard TT', serif;">Search By Name</h2>
+       <br />
+        
+        <form method="post" action="/First/ToysSearch">
+            <input type="text" id="prmeter" name="prmeter"  />
+            <input type="submit" value="Search" class="btn btn-info " />
+        </form>
+        @if (Model != null)
+    {<br />
+        @foreach (ToysProperties A in Model)
+    {
+
+        <div class="panel panel-success">
+            <div class="panel-body">
+                <div class="col-md-5">
+                    <p><span class="glyphicon glyphicon-user"></span> @A.Name</p>
+                    <p><span class="glyphicon "></span> @A.Price</p>
+                    <p><span class="glyphicon "></span> @A.Color</p>
+                    <p><span class="glyphicon "></span> @A.Weight</p>
+                    <p><span class="glyphicon"></span> @A.Age</p>
+                    <div class="text-right">
+                        <a href="/First/ToysDetail?id=@A.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-eye-open"></span> </a>
+                        <a href="/First/ToysDelete?Id=@A.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+}
+}
+    </div>
+    </div>
