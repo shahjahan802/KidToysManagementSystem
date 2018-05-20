@@ -15,13 +15,13 @@ namespace FirstAssignmentTheta.Controllers
             ORM = _ORM;
         }
         [HttpGet]
-        public IActionResult Toyscreate()
+        public IActionResult ToysCreate()
         {
 
             return View();
         }
         [HttpPost]
-        public IActionResult Toyscreate(ToysProperties A)
+        public IActionResult ToysCreate(ToysProperties A)
         {
             ORM.ToysProperties.Add(A);
             ORM.SaveChanges();
@@ -45,6 +45,25 @@ namespace FirstAssignmentTheta.Controllers
         {
            IList< ToysProperties> Reg = ORM.ToysProperties.Where(a => a.Id == iD).ToList<ToysProperties>();
             return View(Reg);
+        }
+        [HttpGet]
+        public IActionResult ToysEdit(int iD)
+        {
+           ToysProperties TEdit = ORM.ToysProperties.Where(a => a.Id == iD).SingleOrDefault<ToysProperties>();
+            return View(TEdit);
+        }
+        [HttpPost]
+        public IActionResult ToysEdit(ToysProperties tp)
+        {
+            var id = tp.Id;
+            var name = tp.Name;
+            var price = tp.Price;
+            var color = tp.Color;
+            var weight = tp.Weight;
+            var age=tp.Age;
+            ORM.ToysProperties.Update(tp);
+           ORM.SaveChanges();
+            return RedirectToAction("ToysAllViews");
         }
         [HttpGet]
         public IActionResult ToysSearch()
