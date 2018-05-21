@@ -2,13 +2,13 @@
 
 @if (ViewBag.Message != "" && ViewBag.Message != null)
 {
-    <h5 @*class="alert alert-success btn btn-lg btn btn-block" *@><span class="glyphicon glyphicon-ok"></span> @ViewBag.Message</h5>
+    <h5><span class="glyphicon glyphicon-ok"></span> @ViewBag.Message</h5>
 }
 <div class="container">
     <div class="row" style="font-family: 'Old Standard TT', serif;">
 
         <div class="col-md-5">
-            <h4 class="btn btn-info btn-lg btn-block" style="font-family: 'Old Standard TT', serif; margin-top:10px;">Toys Registration</h4>
+            <h4 class="btn btn-info btn-lg btn-block">Toys Registration</h4>
             <hr />
             <form asp-action="ToysCreate">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -43,7 +43,7 @@
             </form>
         </div>
     </div>
-</div>>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
