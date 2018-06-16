@@ -26,17 +26,19 @@ namespace FirstAssignmentTheta
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<KidsToysSystemContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("Con")));
             services.AddDbContext<KidsToysSystemContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Con")));
+                options.UseSqlite(Configuration.GetConnectionString("Conn")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
         }

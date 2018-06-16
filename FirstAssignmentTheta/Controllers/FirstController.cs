@@ -61,6 +61,7 @@ namespace FirstAssignmentTheta.Controllers
             var color = tp.Color;
             var weight = tp.Weight;
             var age=tp.Age;
+            var email=tp.Email;
             ORM.ToysProperties.Update(tp);
            ORM.SaveChanges();
             return RedirectToAction("ToysAllViews");
