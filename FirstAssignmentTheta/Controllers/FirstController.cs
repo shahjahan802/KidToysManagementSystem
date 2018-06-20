@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using FirstAssignmentTheta.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstAssignmentTheta.Controllers
@@ -10,9 +12,11 @@ namespace FirstAssignmentTheta.Controllers
     public class FirstController : Controller
     {
         KidsToysSystemContext ORM = null;
-        public FirstController(KidsToysSystemContext _ORM)
+        IHostingEnvironment Oenv = null;
+        public FirstController(KidsToysSystemContext _ORM , IHostingEnvironment _Oenv)
         {
             ORM = _ORM;
+            Oenv = _Oenv;
         }
         [HttpGet]
         public IActionResult ToysCreate()
@@ -23,6 +27,32 @@ namespace FirstAssignmentTheta.Controllers
         [HttpPost]
         public IActionResult ToysCreate(ToysProperties A)
         {
+            try
+            {
+                var Oemail = new MailMessage();
+                Oemail.To.Add(A.Email);
+                Oemail.From = new MailAddress("sialkotem@gmail.com");
+                Oemail.Bcc.Add("shahjahan7868@outlook.com");
+                Oemail.CC.Add("shahjahan7868@outlook.com");
+                Oemail.Subject = "THis is Email Sending Procedure";
+                Oemail.Body = "This is the body portion";
+
+                var Osmtp = new SmtpClient();
+                Osmtp.Host = "smtp.gmail.com";
+                Osmtp.Credentials = new System.Net.NetworkCredential("sialkotem@gmail.com", "sialkot7868");
+                Osmtp.UseDefaultCredentials = false;
+                Osmtp.Port = 587;
+                Osmtp.EnableSsl = true;
+                Osmtp.Send(Oemail);
+
+                return View();
+            }
+            catch(Exception e)
+            {
+                ViewBag.Message = "Eror Find//////" + e.Message;
+            }
+
+
             ORM.ToysProperties.Add(A);
             ORM.SaveChanges();
             ViewBag.Message = "Kid Toys Successful Save";

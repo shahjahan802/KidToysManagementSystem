@@ -8,6 +8,7 @@
         <environment include="Development">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Old+Standard+TT">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.17/css/jquery.dataTables.min.css" />
             <link rel="stylesheet" href="~/css/site.css" />
 
         </environment>
@@ -20,7 +21,7 @@
 
         </environment>
     </head>
-    <body >
+    <body>
         <div class="container body-content">
             <div style="height:455px;">
                 <h2 class=" btn btn-info btn-lg btn-block">Kids Toys Management System</h2>
@@ -46,7 +47,7 @@
                             <img src="~/images/boy-kids.jpg" alt="kids" style="width:100%; height:400px;" />
                         </div>
                     </div>
-                  
+
                     <!-- Left and right controls -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -63,7 +64,7 @@
             <div class="col-md-3 btn btn-info">
                 <a href="#" class="btn btn-info btn-lg btn-block">Dash Board</a>
                 <a href="/First/ToysCreate" class="btn btn-info btn-lg btn-block">Add Toys</a>
-                <a href="/First/ToysAllviews" class="btn btn-info btn-lg btn-block">View All Toys</a>
+                <a href="/First/ToysAllviews" class="btn btn-info btn-lg btn-block glyphicon-ok-circle">View All Toys</a>
                 <a href="/First/ToysSearch" class="btn btn-info btn-lg btn-block">Search Toys</a>
                 <div class="clearfix"></div>
             </div>
@@ -77,11 +78,14 @@
                 <p>&copy; 2018 - Kids Toys Management System</p>
             </footer>
         </div>
-       
+
 
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
+
+            <script src="//cdn.datatables.net/1.10.17/js/jquery.dataTables.min.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
             <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
         <environment exclude="Development">
@@ -97,9 +101,26 @@
                     crossorigin="anonymous"
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
             </script>
+
+
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
 
         @RenderSection("Scripts", required: false)
+        @*<script type="text/javascript">
+        function add_chatinline() { var hccid = 91305104; var nt = document.createElement("script"); nt.async = true; nt.src = "https://mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
+        add_chatinline();</script>*@
+
+        @*start of livechat (www.livechatinc.com) code*@
+        <script type="text/javascript">
+            window.__lc = window.__lc || {};
+            window.__lc.license = 9865995;
+            (function () {
+                var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+                lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+            })();
+        </script>
+
     </body>
 </html>
