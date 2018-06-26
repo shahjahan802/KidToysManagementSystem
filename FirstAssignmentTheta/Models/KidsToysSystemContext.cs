@@ -57,6 +57,8 @@ namespace FirstAssignmentTheta.Models
                 entity.Property(e => e.Weight).HasColumnType("nvarchar(50)");
 
                 entity.Property(e => e.Email).HasColumnType("nvarchar(50)");
+
+                entity.Property(e => e.File).HasColumnType("nvarchar(50)");
             });
         }
     }

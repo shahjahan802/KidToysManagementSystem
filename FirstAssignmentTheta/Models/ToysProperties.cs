@@ -12,5 +12,6 @@ namespace FirstAssignmentTheta.Models
         public string Weight { get; set; }
         public long? Age { get; set; }
         public string Email { get; set; }
+        public string File { get; set; }
     }
 }

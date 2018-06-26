@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using FirstAssignmentTheta.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstAssignmentTheta.Controllers
@@ -27,27 +29,40 @@ namespace FirstAssignmentTheta.Controllers
         [HttpPost]
         public IActionResult ToysCreate(ToysProperties A)
         {
+
+            //string exten = Path.GetExtension(FilePath.File);
+            //string filename = DateTime.Now.ToString("ddmmyyyyhhmmsstt") + "Jahan";
+            //string finalpath = "/wwwroot/images/" + filename + exten;
+            //FileStream FN = new FileStream(Oenv.WebRootPath + finalpath, FileMode.Create);
+            //FilePath.CopyTo(FN);
+            //FN.Close();
+            //File.FilePath = finalpath;
+
+
+
+
+
             try
             {
                 var Oemail = new MailMessage();
                 Oemail.To.Add(A.Email);
-                Oemail.From = new MailAddress("sialkotem@gmail.com");
+                Oemail.From = new MailAddress(OurEmailSetting.From);
                 Oemail.Bcc.Add("shahjahan7868@outlook.com");
                 Oemail.CC.Add("shahjahan7868@outlook.com");
                 Oemail.Subject = "THis is Email Sending Procedure";
                 Oemail.Body = "This is the body portion";
 
                 var Osmtp = new SmtpClient();
-                Osmtp.Host = "smtp.gmail.com";
-                Osmtp.Credentials = new System.Net.NetworkCredential("sialkotem@gmail.com", "sialkot7868");
+                Osmtp.Host = OurEmailSetting.SMTP;
+                Osmtp.Credentials = new System.Net.NetworkCredential(OurEmailSetting.UserName, OurEmailSetting.Password);
                 Osmtp.UseDefaultCredentials = false;
-                Osmtp.Port = 587;
+                Osmtp.Port = OurEmailSetting.Port;
                 Osmtp.EnableSsl = true;
                 Osmtp.Send(Oemail);
 
                 return View();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.Message = "Eror Find//////" + e.Message;
             }
@@ -55,26 +70,27 @@ namespace FirstAssignmentTheta.Controllers
 
             ORM.ToysProperties.Add(A);
             ORM.SaveChanges();
-            ViewBag.Message = "Kid Toys Successful Save";
+            ViewBag.Message = OurMessages.ToysSaved;
             return View();
         }
+        [HttpGet]
         public IActionResult ToysAllViews()
         {
-            IList<ToysProperties> obj = ORM.ToysProperties.ToList<ToysProperties>();
-            return View(obj);
+           
+            return View(ORM.ToysProperties.ToList<ToysProperties>());
         }
-
-        public IActionResult ToysDelete(ToysProperties ad)
+        
+        public IActionResult ToysDelete(ToysProperties OTP)
         {
-            ORM.ToysProperties.Remove(ad);
+            ORM.ToysProperties.Remove(OTP);
             ORM.SaveChanges();
            return RedirectToAction("ToysAllViews");
 
         }
         public IActionResult ToysDetail(int iD)
         {
-           IList< ToysProperties> Reg = ORM.ToysProperties.Where(a => a.Id == iD).ToList<ToysProperties>();
-            return View(Reg);
+           
+            return View(ORM.ToysProperties.Where(a => a.Id == iD).ToList<ToysProperties>());
         }
         [HttpGet]
         public IActionResult ToysEdit(int iD)
@@ -85,16 +101,16 @@ namespace FirstAssignmentTheta.Controllers
         [HttpPost]
         public IActionResult ToysEdit(ToysProperties tp)
         {
-            var id = tp.Id;
-            var name = tp.Name;
-            var price = tp.Price;
-            var color = tp.Color;
-            var weight = tp.Weight;
-            var age=tp.Age;
-            var email=tp.Email;
+            //var id = tp.Id;
+            //var name = tp.Name;
+            //var price = tp.Price;
+            //var color = tp.Color;
+            //var weight = tp.Weight;
+            //var age=tp.Age;
+            //var email=tp.Email;
             ORM.ToysProperties.Update(tp);
-           ORM.SaveChanges();
-            return RedirectToAction("ToysAllViews");
+            ORM.SaveChanges();
+            return RedirectToAction(nameof(FirstController.ToysAllViews));
         }
         [HttpGet]
         public IActionResult ToysSearch()

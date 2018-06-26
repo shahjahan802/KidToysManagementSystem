@@ -9,6 +9,8 @@
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Old+Standard+TT">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="https://cdn.datatables.net/1.10.17/css/jquery.dataTables.min.css" />
+
+            <link href="~/css/skins/minimal/green.css" rel="stylesheet" />
             <link rel="stylesheet" href="~/css/site.css" />
 
         </environment>
@@ -62,10 +64,10 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-md-3 btn btn-info">
-                <a href="#" class="btn btn-info btn-lg btn-block">Dash Board</a>
-                <a href="/First/ToysCreate" class="btn btn-info btn-lg btn-block">Add Toys</a>
-                <a href="/First/ToysAllviews" class="btn btn-info btn-lg btn-block glyphicon-ok-circle">View All Toys</a>
-                <a href="/First/ToysSearch" class="btn btn-info btn-lg btn-block">Search Toys</a>
+                <a href="#" class="btn btn-info btn-lg btn-block"><input type="checkbox" checked>Dash Board</a>
+                <a href="/First/ToysCreate" class="btn btn-info btn-lg btn-block"><input type="checkbox" checked>Add Toys</a>
+                <a href="/First/ToysAllviews" class="btn btn-info btn-lg btn-block"><input type="checkbox" checked>View All Toys</a>
+                <a href="/First/ToysSearch" class="btn btn-info btn-lg btn-block"><input type="checkbox" checked>Search Toys</a>
                 <div class="clearfix"></div>
             </div>
 
@@ -85,6 +87,8 @@
 
             <script src="//cdn.datatables.net/1.10.17/js/jquery.dataTables.min.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+            <script src="~/js/icheck.js"></script>
 
             <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
@@ -120,6 +124,19 @@
                 lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
             })();
+
+
+
+           
+                $(document).ready(function(){
+                    $('input').iCheck({
+                        checkboxClass: 'icheckbox_minimal-green',
+                        radioClass: 'iradio_minimal-green',
+                        increaseArea: '20%' // optional
+                    });
+                });
+      
+
         </script>
 
     </body>

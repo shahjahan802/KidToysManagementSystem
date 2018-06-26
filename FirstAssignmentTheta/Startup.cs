@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FirstAssignmentTheta.Data;
 using FirstAssignmentTheta.Models;
 using FirstAssignmentTheta.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FirstAssignmentTheta
 {
@@ -36,6 +37,12 @@ namespace FirstAssignmentTheta
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(option => {
+            //        option.LoginPath = "/  /";
+            //    });
+            
 
             // Add application services.
             //services.AddTransient<IEmailSender, EmailSender>();

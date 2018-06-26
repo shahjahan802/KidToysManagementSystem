@@ -10,45 +10,46 @@
         <div class="col-md-5">
             <h4 class="btn btn-info btn-lg btn-block">Toys Registration</h4>
             <hr />
-            <form asp-action="ToysCreate">
+            <form @*asp-action="ToysCreate"*@ enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @*<div class="form-group">
-                    <label asp-for="Id" class="control-label"></label>
-                    <input asp-for="Id" class="form-control" />
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>*@
+
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
+                    <input type="text" id="name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
+                    <input  type="text" id="price"class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Color" class="control-label"></label>
-                    <input asp-for="Color" class="form-control" />
+                    <input type="text" id="color" class="form-control" />
                     <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Weight" class="control-label"></label>
-                    <input asp-for="Weight" class="form-control" />
+                    <input  type="text" id="weight" class="form-control" />
                     <span asp-validation-for="Weight" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Age" class="control-label"></label>
-                    <input asp-for="Age" class="form-control" />
+                    <input  type="text" id="age" class="form-control" />
                     <span asp-validation-for="Age" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input  type="text" id="email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="File" class="control-label"></label>
+                    <input class="form-control" id="File" name="File"  type="file" />
+                    <span asp-validation-for="File" class="text-danger"></span>
+                </div>
                 <div class="form-group ">
-                    <input type="submit" value="Create" class="btn btn-info" />
+                    <input id="btnGet" type="submit" value="Create" class="btn btn-info" />
                 </div>
             </form>
         </div>
@@ -62,5 +63,55 @@
         $(document).ready(function () {
             $("h5").fadeOut(2000);
         })
+        $('#btnGet').click(function () {
+            //alert("ruuning");
+            ////$("#submitt").fadeout(4000);
+            ////var dbutton = $(this);
+            ////alert("this is runing");  
+            var reg = $("#name").val();
+            var reg1 = $("#price").val();
+            var reg2 = $("#color").val();
+            var reg3 = $("#weight").val();
+            //var reg4 = $("#datepicker").val();
+            var reg4 = $("#age").val();
+            var reg5 = $("#email").val();
+            var reg6 = $("#file").val();
+            //obj = $("#address").val();
+            //alert("ruuning idddd");
+            //alert(reg);
+            //alert(reg1);
+            //alert(reg2);
+            //alert(reg3);
+            //alert(reg4);
+            //alert(reg5);
+            //alert(reg6);
+            $.ajax({
+                type: "post",
+                url: "/First/ToysCreate",
+
+                data: {
+                    Name: reg,
+                    Price: reg1,
+                    Color: reg2,
+                    Weight:reg3,
+                    Age: reg4,
+                    Email: reg5,
+                    File: reg6,
+                },
+
+                success: function (msg) {
+                    $("#message").html(msg);
+
+                    if (msg == "ok") {
+                        alert("student is deleted");
+                    }
+                    dbutton.text("delete");
+                    dbutton.addclass("disabled").fadeout(4000);
+                }
+            });
+
+        });
+
+
     </script>
 }
